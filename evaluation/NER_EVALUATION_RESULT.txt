@@ -1,0 +1,62 @@
+This is perl 5, version 20, subversion 2 (v5.20.2) built for MSWin32-x86-multi-t
+hread-64int
+(with 1 registered patch, see perl -V for more detail)
+
+
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>perl conl
+leval.pl < NER_PerlEvalFormat.txt
+processed 51362 tokens with 5942 phrases; found: 5385 phrases; correct: 3868.
+accuracy:  93.48%; precision:  71.83%; recall:  65.10%; FB1:  68.30
+              LOC: precision:  80.21%; recall:  71.91%; FB1:  75.83  1647
+             MISC: precision:  70.48%; recall:  62.15%; FB1:  66.05  813
+              ORG: precision:  64.75%; recall:  42.73%; FB1:  51.48  885
+              PER: precision:  68.68%; recall:  76.06%; FB1:  72.18  2040
+
+
+Training on eng.train:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Training.py eng_processed.train > NER_weightlist.txt
+
+Testing on eng.testa:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Decoder.py NER_weightlist.txt eng_processed_unlabeled.testa > NER_labeled_test
+a.txt
+
+
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>perl conl
+leval.pl < NER_PerlEvalFormat_testb.txt
+processed 46435 tokens with 5648 phrases; found: 5033 phrases; correct: 3039.
+accuracy:  90.72%; precision:  60.38%; recall:  53.81%; FB1:  56.90
+              LOC: precision:  70.77%; recall:  63.73%; FB1:  67.07  1502
+             MISC: precision:  56.54%; recall:  51.14%; FB1:  53.70  635
+              ORG: precision:  58.46%; recall:  32.03%; FB1:  41.38  910
+              PER: precision:  54.63%; recall:  67.10%; FB1:  60.23  1986
+
+Training on eng.train:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Training.py eng_processed.train > NER_weightlist.txt
+
+Testing on eng.testb:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Decoder.py NER_weightlist.txt eng_processed_unlabeled.testb > NER_labeled_test
+b.txt
+
+
+
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>perl conl
+leval.pl < NER_PerlEvalFormat_train.txt
+processed 203621 tokens with 23499 phrases; found: 23391 phrases; correct: 18514
+.
+accuracy:  96.05%; precision:  79.15%; recall:  78.79%; FB1:  78.97
+              LOC: precision:  87.14%; recall:  85.01%; FB1:  86.06  6966
+             MISC: precision:  73.98%; recall:  73.59%; FB1:  73.78  3420
+              ORG: precision:  75.20%; recall:  61.26%; FB1:  67.52  5149
+              PER: precision:  76.91%; recall:  91.55%; FB1:  83.59  7856
+
+Training on eng.train:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Training.py eng_processed.train > NER_weightlist.txt
+
+Testing on eng.train:
+C:\Users\user\Documents\Visual Studio 2015\Global-Linear-Models-master>python NE
+R_Decoder.py NER_weightlist.txt eng_processed_unlabeled.train > NER_labeled_train.txt
