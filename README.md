@@ -1,5 +1,5 @@
-# CMPT-419
-NLP Project
+# CMPT-419/726
+Machine Learning Project: named entity recognition using distributed perceptron
 
 PythonApplication1 is just a dummy project used by me to test the commit, push and pull functionality.
 
