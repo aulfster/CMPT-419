@@ -20,7 +20,7 @@ class Trainer:
         self.v = {}
         self.x = []
         self.y = []
-
+        self.train_data = []
     def read_training_data(self, training_file):
         """
         """
@@ -58,6 +58,7 @@ class Trainer:
                 self.tags.update(tags)
                 sentence = []
                 tags = []
+                break
         file.close()
 
     def read_weights(self, weight_file):
@@ -143,8 +144,8 @@ class Trainer:
                     g[feature] = 1
 
 
-            ## Calculate suffix features
-            #if token[0] == SUFFIX:
+            # Calculate suffix features
+            # if token[0] == SUFFIX:
             #    # Handle cases where ':' appears as part of the word
             #    u = ':'.join(token[1:-2])
             #    j = int(token[-2])
@@ -298,6 +299,7 @@ class Trainer:
     def write_weight_vector(self):
         """
         """
+        print self.v.items()
         for feature in self.v:
             sys.stdout.write("%s %.1f\n" % (feature, self.v[feature]))
 
@@ -314,7 +316,7 @@ def main(training_file):
     trainer.perceptron_algorithm(5)
 
     # Write out the final weight vector
-    trainer.write_weight_vector()
+    #trainer.write_weight_vector()
 
 def usage():
     sys.stderr.write("""
