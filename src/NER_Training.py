@@ -11,7 +11,7 @@ STOP  = 'STOP'
 
 TRIGRAM = 'TRIGRAM'
 TAG = 'TAG'
-#SUFFIX = 'SUFF'
+SUFFIX = 'SUFF'
 
 class Trainer:
     def __init__(self):
@@ -107,13 +107,13 @@ class Trainer:
             f.add(TAG+':'+history['x'][history['i'] - 1]+':'+tag)
 
         # Suffix features (if not beyond the end of the sentence)
-        #if history['i'] <= len(history['x']):
-        #    # for j=1:3-1
-        #    for j in range(1,3):
-        #        word = history['x'][history['i'] - 1]
-        #        if j <= len(word):
-        #            # word[-j:] where -j when j=1 refers to the last element 
-        #            f.add(SUFFIX+':'+word[-j:]+':'+str(j)+':'+tag)
+        if history['i'] <= len(history['x']):
+           # for j=1:3-1
+           for j in range(1,3):
+               word = history['x'][history['i'] - 1]
+               if j <= len(word):
+                   # word[-j:] where -j when j=1 refers to the last element 
+                   f.add(SUFFIX+':'+word[-j:]+':'+str(j)+':'+tag)
 
         # Check each feature
         for feature in f:
@@ -144,17 +144,17 @@ class Trainer:
 
 
             ## Calculate suffix features
-            #if token[0] == SUFFIX:
-            #    # Handle cases where ':' appears as part of the word
-            #    u = ':'.join(token[1:-2])
-            #    j = int(token[-2])
-            #    v = token[-1]
-            #    if history['i'] <= len(history['x']):
-            #        w = history['x'][history['i'] - 1]
-            #    else:
-            #        w = ''
-            #    if w[-j:] == u and tag == v:
-            #        g[feature] = 1
+            if token[0] == SUFFIX:
+               # Handle cases where ':' appears as part of the word
+               u = ':'.join(token[1:-2])
+               j = int(token[-2])
+               v = token[-1]
+               if history['i'] <= len(history['x']):
+                   w = history['x'][history['i'] - 1]
+               else:
+                   w = ''
+               if w[-j:] == u and tag == v:
+                   g[feature] = 1
 
         return g
 
